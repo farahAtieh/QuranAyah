@@ -23,7 +23,7 @@ android {
             useSupportLibrary true
         }
 
-        def BASE_URL = '"https://api.themoviedb.org/3/"'
+        def BASE_URL = '"https://api.quran.com/api/v4/"'
         buildConfigField 'String', 'BASE_URL', BASE_URL
     }
 
