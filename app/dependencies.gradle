@@ -24,7 +24,7 @@ ext {
     // accompanist
     def accompanist_version = "0.13.0"
     accompanistComponent = [
-            coil: "com.google.accompanist:accompanist-coil:$accompanist_version",
+            coil        : "com.google.accompanist:accompanist-coil:$accompanist_version",
             swipeRefresh: "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
     ]
 
@@ -35,6 +35,14 @@ ext {
     retrofitComponent = [
             retrofit : "com.squareup.retrofit2:retrofit:$retrofit_version",
             converter: "com.squareup.retrofit2:converter-gson:$converter_version",
-            okhttp: "com.squareup.okhttp3:okhttp:$okhttp_version"
+            okhttp   : "com.squareup.okhttp3:okhttp:$okhttp_version"
+    ]
+
+    // room
+    def room_version = "2.5.2"
+    roomComponent = [
+            runtime : "androidx.room:room-runtime:$room_version",
+            compiler: "androidx.room:room-compiler:$room_version",
+            room_ktx     : "androidx.room:room-ktx:$room_version"
     ]
 }

@@ -93,6 +93,11 @@ dependencies {
     implementation retrofitComponent.retrofit
     implementation retrofitComponent.converter
     implementation retrofitComponent.okhttp
+
+    // room
+    implementation roomComponent.runtime
+    kapt roomComponent.compiler
+    implementation roomComponent.room_ktx
 }
 
 kapt {
