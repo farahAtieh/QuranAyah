@@ -21,10 +21,11 @@ ext {
             navigation: "androidx.hilt:hilt-navigation-compose:1.0.0"
     ]
 
-    // coil
-    def coil_version = "0.13.0"
-    coilComponent = [
-            coil: "com.google.accompanist:accompanist-coil:$coil_version",
+    // accompanist
+    def accompanist_version = "0.13.0"
+    accompanistComponent = [
+            coil: "com.google.accompanist:accompanist-coil:$accompanist_version",
+            swipeRefresh: "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
     ]
 
     // retrofit
