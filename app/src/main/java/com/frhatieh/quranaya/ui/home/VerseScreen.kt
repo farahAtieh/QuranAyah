@@ -1,5 +1,6 @@
 package com.frhatieh.quranaya.ui.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
@@ -26,7 +28,11 @@ import androidx.compose.ui.unit.dp
 import com.frhatieh.quranaya.data.model.Verse
 
 @Composable
-fun ColumnScope.VerseScreen(verse: Verse) {
+fun ColumnScope.VerseScreen(
+    verse: Verse,
+    handleSaveClick: (Verse) -> Unit = {}
+) {
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -56,7 +62,12 @@ fun ColumnScope.VerseScreen(verse: Verse) {
                     modifier = Modifier.padding(16.dp),
                     horizontalArrangement = Arrangement.Center,
                 ) {
-                    Icon(Icons.Default.FavoriteBorder, contentDescription = "favorite")
+                    Icon(
+                        if (verse.isSaved) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = "favorite",
+                        modifier = Modifier.clickable {
+                            handleSaveClick(verse)
+                        })
                     Spacer(modifier = Modifier.weight(1f))
                     Icon(Icons.Default.Share, contentDescription = "share")
                 }
