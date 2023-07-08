@@ -1,5 +1,6 @@
 package com.frhatieh.quranaya.di
 
+import com.frhatieh.quranaya.data.datasource.LocalDataSource
 import com.frhatieh.quranaya.data.datasource.RemoteDataSource
 import com.frhatieh.quranaya.data.repository.VerseRepository
 import com.frhatieh.quranaya.data.repository.VerseRepositoryImp
@@ -14,8 +15,9 @@ object RepositoryModule {
 
     @Provides
     fun provideVerseRepository(
-        remoteDataSource: RemoteDataSource
+        remoteDataSource: RemoteDataSource,
+        localDataSource: LocalDataSource
     ): VerseRepository =
-        VerseRepositoryImp(remoteDataSource)
+        VerseRepositoryImp(remoteDataSource, localDataSource)
 
 }

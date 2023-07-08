@@ -1,6 +1,8 @@
 package com.frhatieh.quranaya.di
 
+import com.frhatieh.quranaya.data.datasource.LocalDataSource
 import com.frhatieh.quranaya.data.datasource.RemoteDataSource
+import com.frhatieh.quranaya.database.VerseDao
 import com.frhatieh.quranaya.network.VerseApiService
 import dagger.Module
 import dagger.Provides
@@ -16,5 +18,8 @@ object DataSourceModule {
         verseApiService: VerseApiService
     ): RemoteDataSource = RemoteDataSource(verseApiService)
 
-
+    @Provides
+    fun provideLocalDataSource(
+        verseDao: VerseDao
+    ): LocalDataSource = LocalDataSource(verseDao)
 }
