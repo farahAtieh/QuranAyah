@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
+
+apply from: 'dependencies.gradle'
 
 android {
     namespace 'com.frhatieh.quranaya'
@@ -18,6 +22,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        def BASE_URL = '"https://api.themoviedb.org/3/"'
+        buildConfigField 'String', 'BASE_URL', BASE_URL
     }
 
     buildTypes {
@@ -35,6 +42,7 @@ android {
     }
     buildFeatures {
         compose true
+        buildConfig true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.3.2'
@@ -64,4 +72,28 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    //coil
+    implementation coilComponent.coil
+
+    // navigation
+    implementation navigationComponent.fragment
+    implementation navigationComponent.ui
+
+    // hilt
+    implementation hiltComponent.hilt
+    kapt hiltComponent.compiler
+    implementation hiltComponent.navigation
+
+    // coroutines
+    coroutinesComponent.coroutines
+
+    // retrofit
+    implementation retrofitComponent.retrofit
+    implementation retrofitComponent.converter
+    implementation retrofitComponent.okhttp
+}
+
+kapt {
+    correctErrorTypes true
 }
