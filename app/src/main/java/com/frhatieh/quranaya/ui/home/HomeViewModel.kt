@@ -2,7 +2,10 @@ package com.frhatieh.quranaya.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.frhatieh.quranaya.data.model.Verse
+import com.frhatieh.quranaya.data.usecases.DeleteVerseFromFavoriteUseCase
 import com.frhatieh.quranaya.data.usecases.GetRandomVerseUseCase
+import com.frhatieh.quranaya.data.usecases.InsertVerseToFavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,18 +14,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getRandomVerseUseCase: GetRandomVerseUseCase
+    private val getRandomVerseUseCase: GetRandomVerseUseCase,
+    private val insertVerseToFavoriteUseCase: InsertVerseToFavoriteUseCase,
+    private val deleteVerseFromFavoriteUseCase: DeleteVerseFromFavoriteUseCase
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<LoadedState> =
         MutableStateFlow(LoadedState.Loading)
-    val state: StateFlow<LoadedState> =
-        _state
+    val state: StateFlow<LoadedState> = _state
+
+    private var _verse = MutableStateFlow<Verse?>(null)
+    val verse: StateFlow<Verse?> = _verse
 
     private val _isRefreshing: MutableStateFlow<Boolean> =
         MutableStateFlow(false)
-    val isRefreshing: StateFlow<Boolean> =
-        _isRefreshing
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing
 
     init {
         getRandomVerse()
@@ -37,8 +43,9 @@ class HomeViewModel @Inject constructor(
 
         viewModelScope.launch {
             _state.value = try {
-                val data = getRandomVerseUseCase.invoke(UTHMANI_TEXT)
-                LoadedState.Loaded(data)
+                _verse.value =
+                    getRandomVerseUseCase.invoke(UTHMANI_TEXT)
+                LoadedState.Loaded
             } catch (e: Exception) {
                 LoadedState.Error
             }
@@ -50,7 +57,29 @@ class HomeViewModel @Inject constructor(
         getRandomVerse(true)
     }
 
+    fun handleSaveClick(verse: Verse) {
+        if (verse.isSaved) {
+            delete(verse)
+            _verse.value = verse.copy(isSaved = false)
+        } else {
+            insert(verse)
+            _verse.value = verse.copy(isSaved = true)
+        }
+    }
+
+    private fun insert(verse: Verse) {
+        viewModelScope.launch {
+            insertVerseToFavoriteUseCase.invoke(verse)
+        }
+    }
+
+    private fun delete(verse: Verse) {
+        viewModelScope.launch {
+            deleteVerseFromFavoriteUseCase.invoke(verse)
+        }
+    }
+
     companion object {
-        val UTHMANI_TEXT = "text_uthmani"
+        const val UTHMANI_TEXT = "text_uthmani"
     }
 }

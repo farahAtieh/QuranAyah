@@ -16,5 +16,6 @@ data class Verse(
     val sajdah_number: Int? = null,
     val text_uthmani: String,
     val verse_key: String,
-    val verse_number: Int
+    val verse_number: Int,
+    val isSaved: Boolean = false
 )

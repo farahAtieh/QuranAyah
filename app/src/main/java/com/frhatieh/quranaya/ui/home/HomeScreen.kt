@@ -29,6 +29,7 @@ fun HomeScreen() {
     val viewModel: HomeViewModel = hiltViewModel()
     val state by viewModel.state.collectAsState()
     val isRefreshing by viewModel.isRefreshing.collectAsState()
+    val verse = viewModel.verse.collectAsState().value
 
     Scaffold(
         topBar = {
@@ -58,15 +59,18 @@ fun HomeScreen() {
                         .verticalScroll(rememberScrollState())
                 ) {
                     when (state) {
-                        is LoadedState.Loading -> {
+                        LoadedState.Loading -> {
                             LoadingScreen()
                         }
-
-                        is LoadedState.Loaded -> {
-                            VerseScreen(verse = (state as LoadedState.Loaded).data)
+                        LoadedState.Loaded -> {
+                            if(verse != null){
+                                VerseScreen(
+                                    verse = verse,
+                                    viewModel::handleSaveClick
+                                )
+                            }
                         }
-
-                        is LoadedState.Error -> {
+                        LoadedState.Error -> {
                             ErrorScreen()
                         }
                     }

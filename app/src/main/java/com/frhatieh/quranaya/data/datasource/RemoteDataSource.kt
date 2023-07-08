@@ -2,6 +2,8 @@ package com.frhatieh.quranaya.data.datasource
 
 import com.frhatieh.quranaya.data.model.VerseResponse
 import com.frhatieh.quranaya.network.VerseApiService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(
@@ -9,5 +11,7 @@ class RemoteDataSource @Inject constructor(
 ) {
 
     suspend fun getRandomVerse(fields: String): VerseResponse =
-        verseApiService.getRandomVerse(fields)
+        withContext(Dispatchers.IO) {
+            verseApiService.getRandomVerse(fields)
+        }
 }
