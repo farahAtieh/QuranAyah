@@ -21,13 +21,13 @@ ext {
             navigation: "androidx.hilt:hilt-navigation-compose:1.0.0"
     ]
 
-    // Coil
+    // coil
     def coil_version = "0.13.0"
     coilComponent = [
             coil: "com.google.accompanist:accompanist-coil:$coil_version",
     ]
 
-    // Retrofit
+    // retrofit
     def retrofit_version = "2.9.0"
     def okhttp_version = "4.10.0"
     def converter_version = "2.7.2"
