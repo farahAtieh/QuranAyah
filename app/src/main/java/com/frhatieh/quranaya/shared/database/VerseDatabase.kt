@@ -1,4 +1,4 @@
-package com.frhatieh.quranaya.database
+package com.frhatieh.quranaya.shared.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

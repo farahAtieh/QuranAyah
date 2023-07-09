@@ -25,8 +25,8 @@ import androidx.navigation.NavHostController
 import com.frhatieh.quranaya.R
 import com.frhatieh.quranaya.ui.common.ErrorScreen
 import com.frhatieh.quranaya.ui.common.LoadingScreen
-import com.frhatieh.quranaya.util.LoadedState
-import com.frhatieh.quranaya.util.Screen
+import com.frhatieh.quranaya.shared.util.LoadedState
+import com.frhatieh.quranaya.shared.util.Screen
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 

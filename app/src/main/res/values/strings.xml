@@ -6,6 +6,12 @@
     <string name="save_icon_description">save icon</string>
     <string name="share_icon_description">share icon</string>
     <string name="back_icon_description">back icon</string>
+    <string name="info_icon_description">info icon</string>
     <string name="no_saved_verses">There are no saved verses.</string>
-    <string name="error_msg">Oops something went wrong...</string>
+    <string name="error_msg">Oops something went wrong…</string>
+    <string name="verse_info">
+        Verse Number: %d\nJuz Number: %d\nPage Number: %d\n
+    </string>
+    <string name="save">Save</string>
+    <string name="close">Close</string>
 </resources>

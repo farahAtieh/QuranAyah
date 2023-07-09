@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.frhatieh.quranaya.data.model.Verse
 import com.frhatieh.quranaya.data.usecases.DeleteVerseFromSavedUseCase
 import com.frhatieh.quranaya.data.usecases.GetSavedVersesUseCase
-import com.frhatieh.quranaya.util.LoadedState
+import com.frhatieh.quranaya.shared.util.LoadedState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

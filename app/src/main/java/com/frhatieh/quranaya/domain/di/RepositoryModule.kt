@@ -1,4 +1,4 @@
-package com.frhatieh.quranaya.di
+package com.frhatieh.quranaya.domain.di
 
 import com.frhatieh.quranaya.data.datasource.LocalDataSource
 import com.frhatieh.quranaya.data.datasource.RemoteDataSource

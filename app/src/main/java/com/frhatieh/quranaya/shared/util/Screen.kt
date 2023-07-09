@@ -1,4 +1,4 @@
-package com.frhatieh.quranaya.util
+package com.frhatieh.quranaya.shared.util
 
 const val HOME_ROUTE = "homeScreen"
 const val SAVED_VERSES_SCREEN = "savedVersesScreen"

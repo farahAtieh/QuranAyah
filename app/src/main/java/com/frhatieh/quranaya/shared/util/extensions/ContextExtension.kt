@@ -1,4 +1,4 @@
-package com.frhatieh.quranaya.util.extensions
+package com.frhatieh.quranaya.shared.util.extensions
 
 import android.content.Context
 import android.content.Intent

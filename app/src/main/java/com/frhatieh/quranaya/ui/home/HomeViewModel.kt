@@ -6,7 +6,7 @@ import com.frhatieh.quranaya.data.model.Verse
 import com.frhatieh.quranaya.data.usecases.DeleteVerseFromSavedUseCase
 import com.frhatieh.quranaya.data.usecases.GetRandomVerseUseCase
 import com.frhatieh.quranaya.data.usecases.InsertVerseToSavedUseCase
-import com.frhatieh.quranaya.util.LoadedState
+import com.frhatieh.quranaya.shared.util.LoadedState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,4 +1,4 @@
-package com.frhatieh.quranaya.network
+package com.frhatieh.quranaya.shared.network
 
 import com.frhatieh.quranaya.data.model.VerseResponse
 import retrofit2.http.GET

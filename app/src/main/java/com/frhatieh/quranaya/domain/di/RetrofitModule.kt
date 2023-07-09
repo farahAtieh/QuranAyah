@@ -1,4 +1,4 @@
-package com.frhatieh.quranaya.di
+package com.frhatieh.quranaya.domain.di
 
 import com.frhatieh.quranaya.BuildConfig
 import dagger.Module
