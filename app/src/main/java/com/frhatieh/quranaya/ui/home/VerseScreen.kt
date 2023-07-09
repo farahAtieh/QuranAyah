@@ -23,8 +23,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.frhatieh.quranaya.R
 import com.frhatieh.quranaya.data.model.Verse
 
 @Composable
@@ -64,12 +66,12 @@ fun ColumnScope.VerseScreen(
                 ) {
                     Icon(
                         if (verse.isSaved) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                        contentDescription = "favorite",
+                        contentDescription = stringResource(id = R.string.save_icon_description),
                         modifier = Modifier.clickable {
                             handleSaveClick(verse)
                         })
                     Spacer(modifier = Modifier.weight(1f))
-                    Icon(Icons.Default.Share, contentDescription = "share")
+                    Icon(Icons.Default.Share, contentDescription = stringResource(id = R.string.share_icon_description))
                 }
             }
 

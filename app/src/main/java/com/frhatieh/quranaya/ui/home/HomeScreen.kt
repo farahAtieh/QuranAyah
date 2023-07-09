@@ -19,13 +19,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.frhatieh.quranaya.R
+import com.frhatieh.quranaya.ui.common.ErrorScreen
+import com.frhatieh.quranaya.ui.common.LoadingScreen
+import com.frhatieh.quranaya.util.LoadedState
+import com.frhatieh.quranaya.util.Screen
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController) {
     val viewModel: HomeViewModel = hiltViewModel()
     val state by viewModel.state.collectAsState()
     val isRefreshing by viewModel.isRefreshing.collectAsState()
@@ -34,10 +41,17 @@ fun HomeScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Quran Ayah") },
+                title = { Text(text = stringResource(id = R.string.home_toolbar_title)) },
                 actions = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Default.Favorite, contentDescription = "saved verses")
+                    IconButton(onClick = {
+                        navController.navigate(
+                            route = Screen.SavedVersesRouteScreen.route
+                        )
+                    }) {
+                        Icon(
+                            Icons.Default.Favorite,
+                            contentDescription = stringResource(id = R.string.saved_verses_icon_description)
+                        )
                     }
                 },
                 colors = TopAppBarDefaults
@@ -62,14 +76,16 @@ fun HomeScreen() {
                         LoadedState.Loading -> {
                             LoadingScreen()
                         }
+
                         LoadedState.Loaded -> {
-                            if(verse != null){
+                            if (verse != null) {
                                 VerseScreen(
                                     verse = verse,
                                     viewModel::handleSaveClick
                                 )
                             }
                         }
+
                         LoadedState.Error -> {
                             ErrorScreen()
                         }

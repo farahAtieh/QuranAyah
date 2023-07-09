@@ -3,9 +3,10 @@ package com.frhatieh.quranaya.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.frhatieh.quranaya.data.model.Verse
-import com.frhatieh.quranaya.data.usecases.DeleteVerseFromFavoriteUseCase
+import com.frhatieh.quranaya.data.usecases.DeleteVerseFromSavedUseCase
 import com.frhatieh.quranaya.data.usecases.GetRandomVerseUseCase
-import com.frhatieh.quranaya.data.usecases.InsertVerseToFavoriteUseCase
+import com.frhatieh.quranaya.data.usecases.InsertVerseToSavedUseCase
+import com.frhatieh.quranaya.util.LoadedState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,8 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getRandomVerseUseCase: GetRandomVerseUseCase,
-    private val insertVerseToFavoriteUseCase: InsertVerseToFavoriteUseCase,
-    private val deleteVerseFromFavoriteUseCase: DeleteVerseFromFavoriteUseCase
+    private val insertVerseToSavedUseCase: InsertVerseToSavedUseCase,
+    private val deleteVerseFromFavoriteUseCase: DeleteVerseFromSavedUseCase
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<LoadedState> =
@@ -69,7 +70,7 @@ class HomeViewModel @Inject constructor(
 
     private fun insert(verse: Verse) {
         viewModelScope.launch {
-            insertVerseToFavoriteUseCase.invoke(verse)
+            insertVerseToSavedUseCase.invoke(verse)
         }
     }
 

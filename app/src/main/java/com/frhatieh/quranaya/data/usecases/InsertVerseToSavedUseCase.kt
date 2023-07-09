@@ -6,9 +6,9 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
 @ViewModelScoped
-class DeleteVerseFromFavoriteUseCase @Inject constructor(
+class InsertVerseToSavedUseCase @Inject constructor(
     private val repository: VerseRepository
 ) {
 
-    suspend fun invoke(verse: Verse) = repository.delete(verse)
+    suspend fun invoke(verse: Verse) = repository.insert(verse.copy(isSaved = true))
 }

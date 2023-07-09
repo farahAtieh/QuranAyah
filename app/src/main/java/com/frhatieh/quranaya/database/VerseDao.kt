@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 interface VerseDao {
 
     @Query("SELECT * FROM verse")
-    fun getFavoriteVerses(): Flow<List<Verse>>
+    fun getSavedVerses(): Flow<List<Verse>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(verse: Verse)
