@@ -15,12 +15,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -29,13 +35,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.frhatieh.quranaya.R
 import com.frhatieh.quranaya.data.model.Verse
-import com.frhatieh.quranaya.util.extensions.shareVerse
+import com.frhatieh.quranaya.shared.util.extensions.shareVerse
 
 @Composable
 fun ColumnScope.VerseScreen(
     verse: Verse,
     handleSaveClick: (Verse) -> Unit = {}
 ) {
+    val showPopup = remember { mutableStateOf(false) }
 
     val context = LocalContext.current
     Box(
@@ -44,6 +51,12 @@ fun ColumnScope.VerseScreen(
             .padding(4.dp)
             .align(Alignment.CenterHorizontally)
     ) {
+        if (showPopup.value) {
+            VerseInfoDialog(
+                showPopup,
+                verse
+            )
+        }
         Column(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.Center,
@@ -73,6 +86,14 @@ fun ColumnScope.VerseScreen(
                         modifier = Modifier.clickable {
                             handleSaveClick(verse)
                         })
+                    Icon(
+                        Icons.Outlined.Info,
+                        contentDescription = stringResource(id = R.string.info_icon_description),
+                        Modifier
+                            .padding(start = 8.dp)
+                            .clickable {
+                                showPopup.value = true
+                            })
                     Spacer(modifier = Modifier.weight(1f))
                     Icon(
                         Icons.Default.Share,
@@ -80,9 +101,40 @@ fun ColumnScope.VerseScreen(
                         Modifier.clickable {
                             context.shareVerse(verse.text_uthmani)
                         })
+
                 }
             }
 
         }
+    }
+}
+
+@Composable
+fun VerseInfoDialog(
+    showDialog: MutableState<Boolean>,
+    verse: Verse,
+) {
+    if (showDialog.value) {
+        AlertDialog(
+            onDismissRequest = { showDialog.value = false },
+            text = {
+                Text(
+                    String.format(
+                        stringResource(
+                            id = R.string.verse_info,
+                            verse.verse_number,
+                            verse.juz_number,
+                            verse.page_number
+                        )
+                    )
+                )
+            },
+            confirmButton = {},
+            dismissButton = {
+                TextButton(onClick = { showDialog.value = false }) {
+                    Text(stringResource(id = R.string.close))
+                }
+            },
+        )
     }
 }

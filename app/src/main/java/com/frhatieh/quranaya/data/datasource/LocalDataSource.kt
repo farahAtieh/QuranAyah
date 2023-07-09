@@ -1,7 +1,7 @@
 package com.frhatieh.quranaya.data.datasource
 
 import com.frhatieh.quranaya.data.model.Verse
-import com.frhatieh.quranaya.database.VerseDao
+import com.frhatieh.quranaya.shared.database.VerseDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

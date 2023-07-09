@@ -12,7 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.frhatieh.quranaya.ui.savedverses.SavedVersesScreen
 import com.frhatieh.quranaya.ui.theme.QuranAyahTheme
-import com.frhatieh.quranaya.util.Screen
+import com.frhatieh.quranaya.shared.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

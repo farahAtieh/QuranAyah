@@ -25,7 +25,7 @@ import androidx.navigation.NavHostController
 import com.frhatieh.quranaya.R
 import com.frhatieh.quranaya.ui.common.EmptyScreen
 import com.frhatieh.quranaya.ui.common.ErrorScreen
-import com.frhatieh.quranaya.util.LoadedState
+import com.frhatieh.quranaya.shared.util.LoadedState
 import com.frhatieh.quranaya.ui.common.LoadingScreen
 import com.frhatieh.quranaya.ui.home.VerseScreen
 

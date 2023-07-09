@@ -1,10 +1,10 @@
-package com.frhatieh.quranaya.di
+package com.frhatieh.quranaya.domain.di
 
 import android.content.Context
 import androidx.room.Room
-import com.frhatieh.quranaya.database.VerseDao
-import com.frhatieh.quranaya.database.VerseDatabase
-import com.frhatieh.quranaya.util.Verse_Database
+import com.frhatieh.quranaya.shared.database.VerseDao
+import com.frhatieh.quranaya.shared.database.VerseDatabase
+import com.frhatieh.quranaya.shared.util.Verse_Database
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
