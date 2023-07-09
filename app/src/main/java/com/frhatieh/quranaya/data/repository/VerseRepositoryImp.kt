@@ -14,8 +14,8 @@ class VerseRepositoryImp @Inject constructor(
     override suspend fun getRandomVerse(fields: String) =
         remoteDataSource.getRandomVerse(fields)
 
-    override fun getFavoriteVerses(): Flow<List<Verse>> =
-        localDataSource.getFavoriteVerses()
+    override suspend fun getSavedVerses(): Flow<List<Verse>> =
+        localDataSource.getSavedVerses()
 
     override suspend fun insert(verse: Verse) =
         localDataSource.insert(verse)

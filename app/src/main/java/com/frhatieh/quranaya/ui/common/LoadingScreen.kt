@@ -1,4 +1,4 @@
-package com.frhatieh.quranaya.ui.home
+package com.frhatieh.quranaya.ui.common
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer

@@ -1,4 +1,4 @@
-package com.frhatieh.quranaya.ui.home
+package com.frhatieh.quranaya.util
 
 enum class LoadedState {
     Loading,

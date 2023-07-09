@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">QuranAyah</string>
+    <string name="home_toolbar_title">Quran Ayah</string>
+    <string name="saved_verses_toolbar_title">Saved Ayat</string>
+    <string name="saved_verses_icon_description">saved verses</string>
+    <string name="save_icon_description">save icon</string>
+    <string name="share_icon_description">share icon</string>
+    <string name="back_icon_description">back icon</string>
+    <string name="no_saved_verses">There are no saved verses.</string>
+    <string name="error_msg">Oops something went wrong...</string>
 </resources>

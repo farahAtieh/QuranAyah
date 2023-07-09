@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface VerseRepository {
     suspend fun getRandomVerse(fields: String): VerseResponse
-    fun getFavoriteVerses(): Flow<List<Verse>>
+    suspend fun getSavedVerses(): Flow<List<Verse>>
     suspend fun insert(verse: Verse)
     suspend fun delete(verse: Verse)
 }

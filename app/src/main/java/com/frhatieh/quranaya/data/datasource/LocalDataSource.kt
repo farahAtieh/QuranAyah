@@ -10,8 +10,10 @@ import javax.inject.Inject
 class LocalDataSource @Inject constructor(
     private val verseDao: VerseDao
 ) {
-    fun getFavoriteVerses(): Flow<List<Verse>> =
-        verseDao.getFavoriteVerses()
+    suspend fun getSavedVerses(): Flow<List<Verse>> =
+        withContext(Dispatchers.IO) {
+            verseDao.getSavedVerses()
+        }
 
     suspend fun insert(verse: Verse) =
         withContext(Dispatchers.IO) {
